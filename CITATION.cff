@@ -1,0 +1,18 @@
+---
+# Citation file for fht-simulations
+
+cff-version: 1.2.0
+title: "fht-simulations: Toy Fractal Holonomy Theory simulations"
+version: "0.1.0"
+authors:
+  - family-names: "Nathan"
+    given-names: ""
+    affiliation: "Independent researcher"
+    orcid: ""
+
+license: "MIT"
+repository-code: "https://github.com/NathanD1980-cmyk/fht-simulations"
+abstract: |
+  This package provides a minimal framework for exploring the ideas of
+  Fractal Holonomy Theory through simple simulations and a compendium of
+  theoretical constructs.
