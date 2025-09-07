@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fht"
+version = "0.1.0"
+authors = [
+    {name = "Nathan", email = ""},
+]
+description = "Toy simulations for Fractal Holonomy Theory"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.22"
+]
+
+[tool.setuptools.packages.find]
+where = ["fht"]
