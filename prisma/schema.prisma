@@ -24,6 +24,8 @@ model Element {
   electronAffinityEv    Float?
   meltingPointK         Float?
   boilingPointK         Float?
+  compoundParts CompoundPart[]
+
   density_g_cm3         Float?
   standardState         String?
   cpkColorHex           String?
@@ -31,6 +33,8 @@ model Element {
 }
 
 model Isotope {
+  
+
   id            String  @id @default(cuid())
   elementId     String
   element       Element @relation(fields: [elementId], references: [id])
