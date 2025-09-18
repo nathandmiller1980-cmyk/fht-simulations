@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Element {
+  id                    String   @id @default(cuid())
+  atomicNumber          Int      @unique
+  symbol                String   @unique
+  name                  String
+  group                 Int?
+  period                Int?
+  block                 String?
+  category              String?
+  atomicMassU           Float?
+  electronConfiguration String?
+  electronegativity     Float?
+  atomicRadiusPm        Float?
+  ionizationEnergyEv    Float?
+  electronAffinityEv    Float?
+  meltingPointK         Float?
+  boilingPointK         Float?
+  density_g_cm3         Float?
+  standardState         String?
+  cpkColorHex           String?
+  isotopes              Isotope[]
+}
+
+model Isotope {
+  id            String  @id @default(cuid())
+  elementId     String
+  element       Element @relation(fields: [elementId], references: [id])
+  Z             Int
+  N             Int
+  A             Int
+  symbol        String
+  atomicMassU   Float?
+  massExcessKeV Float?
+  halfLifeS     Float?
+  decayModes    Json?
+  spinParity    String?
+  abundancePct  Float?
+  @@unique([Z, N])
+  @@index([elementId, A])
+}
+
+model Compound {
+  id         String   @id @default(cuid())
+  formula    String
+  name       String?
+  notes      String?
+  createdBy  String?
+  createdAt  DateTime @default(now())
+  parts      CompoundPart[]
+}
+
+model CompoundPart {
+  id          String   @id @default(cuid())
+  compoundId  String
+  compound    Compound @relation(fields: [compoundId], references: [id], onDelete: Cascade)
+  elementId   String
+  element     Element  @relation(fields: [elementId], references: [id])
+  count       Int
+}
+
+model NuclearReaction {
+  id         String   @id @default(cuid())
+  createdBy  String?
+  title      String?
+  rtype      String
+  inputJson  Json
+  outputJson Json
+  qMeV       Float?
+  verdict    String
+  rationale  String?
+  createdAt  DateTime @default(now())
+}
